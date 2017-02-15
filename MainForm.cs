@@ -62,7 +62,8 @@ namespace Microsoft.SqlServer.Utils.Misc.SQLCallStackResolver
                 pdbRecurse.Checked,
                 dllPaths,
                 DLLrecurse.Checked,
-                FramesOnSingleLine.Checked
+                FramesOnSingleLine.Checked,
+                IncludeLineNumbers.Checked
                 );
         }
 
@@ -95,6 +96,30 @@ namespace Microsoft.SqlServer.Utils.Misc.SQLCallStackResolver
             {
                 finalOutput.SelectAll();
             }
-        }        
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            var finalCmds = this._resolver.ObtainPDBDownloadCommandsfromDLL(binaryPaths.Text, DLLrecurse.Checked);
+
+            if (string.IsNullOrEmpty(finalCmds))
+            {
+                return;
+            }
+
+            var outputCmds = new MultilineInput(finalCmds);
+            outputCmds.ShowDialog(this);
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            var xelFileName = Microsoft.VisualBasic.Interaction.InputBox("Enter full path to XEL file (including extension)",
+                       "XEL file name",
+                       null,
+                       0,
+                       0);
+
+            callStackInput.Text = this._resolver.GetXMLEquivalent(xelFileName);
+        }
     }
 }

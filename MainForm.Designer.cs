@@ -68,6 +68,9 @@ namespace Microsoft.SqlServer.Utils.Misc.SQLCallStackResolver
             this.binaryPaths = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.FramesOnSingleLine = new System.Windows.Forms.CheckBox();
+            this.button4 = new System.Windows.Forms.Button();
+            this.button3 = new System.Windows.Forms.Button();
+            this.IncludeLineNumbers = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // button1
@@ -93,7 +96,7 @@ namespace Microsoft.SqlServer.Utils.Misc.SQLCallStackResolver
             // 
             this.pdbPaths.Location = new System.Drawing.Point(198, 752);
             this.pdbPaths.Name = "pdbPaths";
-            this.pdbPaths.Size = new System.Drawing.Size(870, 31);
+            this.pdbPaths.Size = new System.Drawing.Size(676, 31);
             this.pdbPaths.TabIndex = 2;
             this.pdbPaths.Text = "C:\\Users\\arvindsh\\Desktop\\sp1_gdr_pdbs";
             // 
@@ -108,7 +111,7 @@ namespace Microsoft.SqlServer.Utils.Misc.SQLCallStackResolver
             this.pdbRecurse.AutoSize = true;
             this.pdbRecurse.Checked = true;
             this.pdbRecurse.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.pdbRecurse.Location = new System.Drawing.Point(1074, 756);
+            this.pdbRecurse.Location = new System.Drawing.Point(880, 754);
             this.pdbRecurse.Name = "pdbRecurse";
             this.pdbRecurse.Size = new System.Drawing.Size(217, 29);
             this.pdbRecurse.TabIndex = 4;
@@ -142,9 +145,9 @@ namespace Microsoft.SqlServer.Utils.Misc.SQLCallStackResolver
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(1318, 752);
+            this.button2.Location = new System.Drawing.Point(1377, 743);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(170, 83);
+            this.button2.Size = new System.Drawing.Size(128, 93);
             this.button2.TabIndex = 3;
             this.button2.Text = "Enter base addresses";
             this.button2.UseVisualStyleBackColor = true;
@@ -155,7 +158,7 @@ namespace Microsoft.SqlServer.Utils.Misc.SQLCallStackResolver
             this.DLLrecurse.AutoSize = true;
             this.DLLrecurse.Checked = true;
             this.DLLrecurse.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.DLLrecurse.Location = new System.Drawing.Point(1074, 807);
+            this.DLLrecurse.Location = new System.Drawing.Point(880, 802);
             this.DLLrecurse.Name = "DLLrecurse";
             this.DLLrecurse.Size = new System.Drawing.Size(217, 29);
             this.DLLrecurse.TabIndex = 10;
@@ -166,7 +169,7 @@ namespace Microsoft.SqlServer.Utils.Misc.SQLCallStackResolver
             // 
             this.binaryPaths.Location = new System.Drawing.Point(198, 803);
             this.binaryPaths.Name = "binaryPaths";
-            this.binaryPaths.Size = new System.Drawing.Size(870, 31);
+            this.binaryPaths.Size = new System.Drawing.Size(676, 31);
             this.binaryPaths.TabIndex = 9;
             // 
             // label2
@@ -181,12 +184,44 @@ namespace Microsoft.SqlServer.Utils.Misc.SQLCallStackResolver
             // FramesOnSingleLine
             // 
             this.FramesOnSingleLine.AutoSize = true;
-            this.FramesOnSingleLine.Location = new System.Drawing.Point(1511, 756);
+            this.FramesOnSingleLine.Location = new System.Drawing.Point(1511, 743);
             this.FramesOnSingleLine.Name = "FramesOnSingleLine";
             this.FramesOnSingleLine.Size = new System.Drawing.Size(153, 54);
             this.FramesOnSingleLine.TabIndex = 11;
             this.FramesOnSingleLine.Text = "Frames on \r\nsingle line?";
             this.FramesOnSingleLine.UseVisualStyleBackColor = true;
+            // 
+            // button4
+            // 
+            this.button4.Location = new System.Drawing.Point(1235, 743);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(136, 93);
+            this.button4.TabIndex = 13;
+            this.button4.Text = "Get PDB dnld script";
+            this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
+            // 
+            // button3
+            // 
+            this.button3.Location = new System.Drawing.Point(1121, 743);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(108, 93);
+            this.button3.TabIndex = 14;
+            this.button3.Text = "Load XEL";
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
+            // 
+            // IncludeLineNumbers
+            // 
+            this.IncludeLineNumbers.AutoSize = true;
+            this.IncludeLineNumbers.Checked = true;
+            this.IncludeLineNumbers.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.IncludeLineNumbers.Location = new System.Drawing.Point(1511, 802);
+            this.IncludeLineNumbers.Name = "IncludeLineNumbers";
+            this.IncludeLineNumbers.Size = new System.Drawing.Size(152, 29);
+            this.IncludeLineNumbers.TabIndex = 15;
+            this.IncludeLineNumbers.Text = "LineNums?";
+            this.IncludeLineNumbers.UseVisualStyleBackColor = true;
             // 
             // MainForm
             // 
@@ -194,6 +229,9 @@ namespace Microsoft.SqlServer.Utils.Misc.SQLCallStackResolver
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.ClientSize = new System.Drawing.Size(1946, 847);
+            this.Controls.Add(this.IncludeLineNumbers);
+            this.Controls.Add(this.button3);
+            this.Controls.Add(this.button4);
             this.Controls.Add(this.FramesOnSingleLine);
             this.Controls.Add(this.DLLrecurse);
             this.Controls.Add(this.binaryPaths);
@@ -228,6 +266,9 @@ namespace Microsoft.SqlServer.Utils.Misc.SQLCallStackResolver
         private System.Windows.Forms.TextBox binaryPaths;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.CheckBox FramesOnSingleLine;
+        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.CheckBox IncludeLineNumbers;
     }
 }
 
